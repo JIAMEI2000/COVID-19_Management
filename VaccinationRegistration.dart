@@ -14,6 +14,9 @@ class VaccinationRegistrationPage extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
     TextEditingController _name = TextEditingController();
     TextEditingController _icnum = TextEditingController();
+    TextEditingController _date = TextEditingController();
+    TextEditingController _time = TextEditingController();
+    TextEditingController _location = TextEditingController();
     final UserVaccinationRegistrationBloc regBloc = UserVaccinationRegistrationBloc();
 
     return SafeArea(
@@ -82,6 +85,58 @@ class VaccinationRegistrationPage extends StatelessWidget {
                                 const SizedBox(
                                   height: 40,
                                 ),
+
+                                // Vaccination Date
+                                TextFormField(
+                                  controller: _date,
+                                  decoration: const InputDecoration(
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Select vaccination date',
+                                  ),
+                                  onTap: () async {
+                                    // Show date picker and set selected date to the text field
+                                    final DateTime? selectedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime.now(),
+                                      lastDate: DateTime(2024),
+                                    );
+                                    if (selectedDate != null) {
+                                      _selectedDate.text = selectedDate.toString();
+                                    }
+                                  },
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please select a date';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 20),
+                                // Vaccination Time
+                                TextFormField(
+                                  controller: _time,
+                                  decoration: const InputDecoration(
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Select vaccination time',
+                                  ),
+                                  onTap: () async {
+                                    // Show time picker and set
+
+                                TextFormField(
+                                controller: _location,
+                                decoration: const InputDecoration(
+                                  border: UnderlineInputBorder(),
+                                  labelText: 'Enter location',
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter location';
+                                  }
+                                  return null;
+                                },
+                                ),
+                                const SizedBox(height: 20),
 
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
