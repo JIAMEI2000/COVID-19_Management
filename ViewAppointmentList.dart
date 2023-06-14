@@ -223,6 +223,20 @@ Widget _UI(BuildContext context, state, onGoBack, refresh, appointmentBloc) {
                                 ]),
                               ),
 
+                            ElevatedButton(
+                              onPressed: () {
+                                // Handle approve button action
+                              },
+                              child: const Text('Approve'),
+                            ),
+                            const SizedBox(width: 8),
+                            ElevatedButton(
+                              onPressed: () {
+                                // Handle reject button action
+                              },
+                              child: const Text('Reject'),
+                            ),
+
                         ],
                       ),
                     ),
